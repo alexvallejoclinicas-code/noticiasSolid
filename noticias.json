@@ -1,37 +1,26 @@
 {
   "noticias": [
-     {
-      "id": 4,
-      "titulo": "Nueva versión disponible",
-      "mensaje": "Actualización obligatoria",
-      "tipo": "alerta",
-      "fecha": "2026-10-17T09:00:00",
-      "url": "https://misitio.com/descarga",
-      "activa": true,
-      "versionMenorA": "2.1.0",
-      "repetirMinutos": 1
-    },
     {
       "id": 3,
       "titulo": "Nueva versión disponible",
       "mensaje": "Ya puedes actualizar a la versión 2.1.0",
       "tipo": "novedad",
-      "fecha": "2026-10-17T09:00:00",
+      "fecha": "2026-10-18T09:00:00",
       "url": "https://misitio.com/descarga",
       "activa": true,
       "versionMenorA": "2.1.0",
-      "repetirMinutos": 1
+      "diasVisible": 7
     },
     {
       "id": 2,
       "titulo": "Mantenimiento programado",
       "mensaje": "El servicio del SRI puede presentar lentitud el sábado.",
       "tipo": "alerta",
-      "fecha": "2026-10-15T08:00:00",
+      "fecha": "2026-10-18T08:00:00",
       "url": "",
       "activa": true,
-      "expira": "2026-10-25T00:00:00",
-      "repetirMinutos": 1
+      "diasVisible": 3,
+      "repetirMinutos": 120
     },
     {
       "id": 1,
