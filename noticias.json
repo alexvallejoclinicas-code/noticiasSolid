@@ -9,7 +9,8 @@
       "url": "https://misitio.com/descarga",
       "activa": true,
       "versionMenorA": "2.1.0",
-      "diasVisible": 7
+      "diasVisible": 7,
+      "repetirMinutos": 1
     },
     {
       "id": 2,
@@ -20,7 +21,7 @@
       "url": "",
       "activa": true,
       "diasVisible": 3,
-      "repetirMinutos": 120
+      "repetirMinutos": 3
     },
     {
       "id": 1,
