@@ -8,7 +8,8 @@
       "fecha": "2026-10-17T09:00:00",
       "url": "https://misitio.com/descarga",
       "activa": true,
-      "versionMenorA": "2.1.0"
+      "versionMenorA": "2.1.0",
+      "repetirMinutos": 30
     },
     {
       "id": 2,
@@ -18,12 +19,13 @@
       "fecha": "2026-10-15T08:00:00",
       "url": "",
       "activa": true,
-      "expira": "2026-10-25T00:00:00"
+      "expira": "2026-10-25T00:00:00",
+      "repetirMinutos": 15
     },
     {
       "id": 1,
       "titulo": "Bienvenido",
-      "mensaje": "Gracias por usar la aplicación.",
+      "mensaje": "Gracias por usar la aplicación. Este aviso sale una sola vez.",
       "tipo": "info",
       "fecha": "2026-10-01T09:00:00",
       "url": "",
