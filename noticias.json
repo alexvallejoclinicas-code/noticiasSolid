@@ -1,0 +1,14 @@
+{
+  "noticias":
+  [
+    {
+      "id": 1,
+      "titulo": "Bienvenido",
+      "mensaje": "Primera notificación de prueba",
+      "tipo": "info",
+      "fecha": "2026-10-17T09:00:00",
+      "url": "",
+      "activa": true
+    }
+  ]
+}
