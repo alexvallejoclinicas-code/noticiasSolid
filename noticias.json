@@ -9,7 +9,7 @@
       "url": "https://misitio.com/descarga",
       "activa": true,
       "versionMenorA": "2.1.0",
-      "repetirMinutos": 30
+      "repetirMinutos": 1
     },
     {
       "id": 2,
@@ -20,7 +20,7 @@
       "url": "",
       "activa": true,
       "expira": "2026-10-25T00:00:00",
-      "repetirMinutos": 15
+      "repetirMinutos": 1
     },
     {
       "id": 1,
