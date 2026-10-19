@@ -31,6 +31,120 @@
       "fecha": "2026-10-01T09:00:00",
       "url": "",
       "activa": true
+    },
+    {
+      "id": 4,
+      "titulo": "Prueba: aviso de una sola vez",
+      "mensaje": "Esperado: sale una vez y no se repite (sin diasVisible ni repetirMinutos).",
+      "tipo": "info",
+      "fecha": "2026-10-18T07:30:00",
+      "activa": true
+    },
+    {
+      "id": 5,
+      "titulo": "Prueba: una vez al día durante 3 días",
+      "mensaje": "Esperado: sale hoy, mañana y pasado mañana (diasVisible 3). Si la cierras, no vuelve.",
+      "tipo": "info",
+      "fecha": "2026-10-18T07:20:00",
+      "activa": true,
+      "diasVisible": 3
+    },
+    {
+      "id": 6,
+      "titulo": "Prueba: se repite cada 2 minutos",
+      "mensaje": "Esperado: reaparece cada 2 minutos hoy, hasta que presiones la X o hagas clic.",
+      "tipo": "alerta",
+      "fecha": "2026-10-18T07:10:00",
+      "activa": true,
+      "diasVisible": 1,
+      "repetirMinutos": 2
+    },
+    {
+      "id": 7,
+      "titulo": "Prueba: con enlace",
+      "mensaje": "Esperado: al hacer clic abre sri.gob.ec y el aviso queda descartado.",
+      "tipo": "novedad",
+      "fecha": "2026-10-18T07:00:00",
+      "activa": true,
+      "diasVisible": 2,
+      "url": "https://www.sri.gob.ec"
+    },
+    {
+      "id": 8,
+      "titulo": "Prueba: expira hoy a las 23:59",
+      "mensaje": "Esperado: visible solo hoy; mañana ya no aparece (campo expira).",
+      "tipo": "info",
+      "fecha": "2026-10-18T06:50:00",
+      "activa": true,
+      "expira": "2026-10-18T23:59:00"
+    },
+    {
+      "id": 9,
+      "titulo": "Prueba: versión de la app menor a 99.0.0",
+      "mensaje": "Esperado: se muestra, porque tu versión es menor a la indicada en versionMenorA.",
+      "tipo": "info",
+      "fecha": "2026-10-18T06:40:00",
+      "activa": true,
+      "diasVisible": 3,
+      "versionMenorA": "99.0.0"
+    },
+    {
+      "id": 10,
+      "titulo": "Prueba: programada para mañana",
+      "mensaje": "Esperado: aparece el 19/10/2026 desde las 08:00 (antes no se ve ni en el historial).",
+      "tipo": "info",
+      "fecha": "2026-10-19T08:00:00",
+      "activa": true,
+      "diasVisible": 3
+    },
+    {
+      "id": 11,
+      "titulo": "Prueba: programada para pasado mañana",
+      "mensaje": "Esperado: aparece el 20/10/2026 desde las 08:00 y se repite cada 30 minutos.",
+      "tipo": "alerta",
+      "fecha": "2026-10-20T08:00:00",
+      "activa": true,
+      "diasVisible": 2,
+      "repetirMinutos": 30
+    },
+    {
+      "id": 12,
+      "titulo": "Prueba: programada para el 21/10",
+      "mensaje": "Esperado: aparece el 21/10/2026 y permanece 5 días, una vez al día.",
+      "tipo": "novedad",
+      "fecha": "2026-10-21T08:00:00",
+      "activa": true,
+      "diasVisible": 5,
+      "url": "https://www.sri.gob.ec"
+    },
+    {
+      "id": 13,
+      "titulo": "Prueba: INACTIVA (no debe verse)",
+      "mensaje": "Esperado: nunca se muestra porque activa es false.",
+      "tipo": "info",
+      "fecha": "2026-10-18T06:30:00",
+      "activa": false,
+      "diasVisible": 3
+    },
+    {
+      "id": 14,
+      "titulo": "Prueba: VENCIDA (no debe verse)",
+      "mensaje": "Esperado: nunca se muestra porque ya pasó su fecha de expiración.",
+      "tipo": "info",
+      "fecha": "2026-10-15T08:00:00",
+      "activa": true,
+      "expira": "2026-10-17T23:59:00"
+    },
+    {
+      "id": 15,
+      "titulo": "Prueba: versión no aplica (no debe verse)",
+      "mensaje": "Esperado: no se muestra porque tu versión no es menor a 0.0.1.",
+      "tipo": "info",
+      "fecha": "2026-10-18T06:20:00",
+      "activa": true,
+      "diasVisible": 3,
+      "versionMenorA": "0.0.1"
     }
-  ]
+  ],
+  "ultimoId": 15
 }
