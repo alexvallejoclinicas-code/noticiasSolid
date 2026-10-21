@@ -1,272 +1,212 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-bs-theme="light">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Noticias y avisos</title>
-
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-        crossorigin="anonymous">
-
-  <style>
-    .contenedor { max-width: 46rem; }
-    .aviso-titulo { font-weight: 600; }
-    .aviso-fecha { font-size: .8125rem; white-space: nowrap; opacity: .8; }
-    .aviso-texto { max-width: 68ch; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Facturea · Facturación electrónica para pymes y farmacias</title>
+<meta name="description" content="Emite facturas electrónicas autorizadas por el SRI y controla tu inventario. Hecho para pymes y farmacias de Ecuador.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<style>
+:root{--tinta:#10231c;--verde:#0e7c5a;--verde-osc:#0a5c43;--menta:#eaf3ef;--linea:#cfe0d8;--bs-body-color:var(--tinta);--bs-body-bg:#fbfcfb}
+html{scroll-padding-top:4.5rem}
+h1,h2,h3,.marca{font-family:"Bricolage Grotesque",system-ui,sans-serif;letter-spacing:-.01em}
+.marca{font-weight:700;color:var(--verde-osc);text-decoration:none;font-size:1.35rem}
+.btn-verde{--bs-btn-bg:var(--verde);--bs-btn-border-color:var(--verde);--bs-btn-color:#fff;--bs-btn-hover-bg:var(--verde-osc);--bs-btn-hover-border-color:var(--verde-osc);--bs-btn-hover-color:#fff;--bs-btn-active-bg:var(--verde-osc);--bs-btn-active-color:#fff}
+.btn-linea{--bs-btn-color:var(--verde-osc);--bs-btn-border-color:var(--verde);--bs-btn-hover-bg:var(--menta);--bs-btn-hover-color:var(--verde-osc);--bs-btn-hover-border-color:var(--verde)}
+.hero{background:linear-gradient(180deg,var(--menta),#fbfcfb)}
+.hero h1{font-size:clamp(2rem,4.5vw,3.25rem);line-height:1.1;font-weight:700}
+.texto{max-width:60ch}
+/* Factura de ejemplo: el elemento memorable de la página */
+.ticket{position:relative;background:#fff;border:1px solid var(--linea);padding:1.5rem 1.5rem 1.25rem;font-size:.875rem;transform:rotate(1.5deg);box-shadow:0 .75rem 1.5rem rgba(16,35,28,.1);max-width:22rem;margin-inline:auto}
+.ticket::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:8px;background:radial-gradient(circle at 6px 0,#fff 5px,transparent 5.5px) 0 0/12px 8px repeat-x;filter:drop-shadow(0 1px 0 var(--linea))}
+.ticket table{width:100%}.ticket td{padding:.15rem 0}.ticket td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.ticket .total{border-top:1px dashed var(--tinta);margin-top:.5rem;padding-top:.5rem;font-weight:700;font-size:1rem}
+.sello{position:absolute;right:1rem;top:3.2rem;border:2px solid var(--verde);color:var(--verde);padding:.1rem .6rem;font-weight:700;transform:rotate(-12deg);background:rgba(255,255,255,.85)}
+.clave{font-size:.65rem;word-break:break-all;color:#5b6f66;margin:.75rem 0 0}
+.lista-sri{border-block:1px solid var(--linea)}
+.lista-sri li{padding:.9rem 1rem;border-left:1px solid var(--linea)}.lista-sri li:first-child{border-left:0}
+.farmacia{background:var(--menta);border-left:4px solid var(--verde)}
+.check{list-style:none;padding:0}.check li{padding-left:1.6rem;position:relative;margin-bottom:.6rem}
+.check li::before{content:"";position:absolute;left:0;top:.45em;width:.85rem;height:.5rem;border-left:2px solid var(--verde);border-bottom:2px solid var(--verde);transform:rotate(-45deg)}
+.aviso-titulo{font-weight:600}.aviso-fecha{font-size:.8125rem;white-space:nowrap;opacity:.8}.aviso-texto{max-width:68ch}
+footer{background:var(--tinta);color:#cfe0d8}footer a{color:#fff}
+@media(max-width:767px){.lista-sri li{border-left:0;border-top:1px solid var(--linea)}.lista-sri li:first-child{border-top:0}.ticket{transform:none;margin-top:2rem}}
+</style>
 </head>
-
 <body>
-  <main class="contenedor container py-4 py-md-5">
-    <header class="d-flex flex-wrap justify-content-between align-items-baseline gap-2 mb-4">
-      <h1 class="h3 mb-0">Noticias y avisos</h1>
+
+<nav class="navbar navbar-expand-md bg-white border-bottom sticky-top">
+  <div class="container">
+    <a class="marca" href="#">Facturea</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menú"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto align-items-md-center gap-md-2">
+        <li class="nav-item"><a class="nav-link" href="#beneficios">Beneficios</a></li>
+        <li class="nav-item"><a class="nav-link" href="#farmacias">Farmacias</a></li>
+        <li class="nav-item"><a class="nav-link" href="#noticias">Noticias del SRI</a></li>
+        <li class="nav-item"><a class="btn btn-verde btn-sm" href="#contacto">Pedir demostración</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header class="hero py-5">
+  <div class="container py-md-4">
+    <div class="row align-items-center g-4">
+      <div class="col-md-7">
+        <h1>Factura electrónica sin complicaciones para tu pyme o farmacia</h1>
+        <p class="fs-5 texto my-4">Emite facturas autorizadas por el SRI, controla tu inventario y ten tus comprobantes en orden, sin depender de hojas de cálculo.</p>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-verde btn-lg" href="#contacto">Pedir demostración</a>
+          <a class="btn btn-linea btn-lg" href="#noticias">Ver noticias del SRI</a>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="ticket" aria-label="Ejemplo de factura electrónica">
+          <strong>Farmacia Ejemplo</strong><br><span class="text-secondary">Factura 001-001-000001245</span>
+          <span class="sello">AUTORIZADO</span>
+          <table class="mt-4"><tbody>
+            <tr><td>Paracetamol 500 mg x 20</td><td>2,10</td></tr>
+            <tr><td>Suero oral 500 ml</td><td>1,85</td></tr>
+            <tr><td>Protector solar FPS 50</td><td>12,40</td></tr>
+            <tr><td class="text-secondary">IVA 0%</td><td class="text-secondary">3,95</td></tr>
+            <tr><td class="text-secondary">IVA 15%</td><td class="text-secondary">1,86</td></tr>
+          </tbody></table>
+          <table class="total"><tbody><tr><td>Total</td><td>18,21</td></tr></tbody></table>
+          <p class="clave">Clave de acceso 2110202601179000000000110010010000012451234567811</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="container py-4" aria-label="Comprobantes que emite">
+  <ul class="lista-sri list-unstyled row row-cols-1 row-cols-md-4 g-0 mb-0 text-center">
+    <li class="col">Facturas</li><li class="col">Notas de crédito y débito</li><li class="col">Retenciones</li><li class="col">Guías de remisión</li>
+  </ul>
+</section>
+
+<section id="beneficios" class="container py-5">
+  <div class="row g-5">
+    <div class="col-md-6">
+      <h2 class="h3 mb-3">Para pymes y comercios</h2>
+      <ul class="check texto">
+        <li>Comprobantes firmados y enviados al SRI en el momento de la venta.</li>
+        <li>Clientes, productos y precios en un solo lugar.</li>
+        <li>Reportes de ventas e IVA listos para tu declaración.</li>
+        <li>Copias de tus comprobantes electrónicos guardadas y fáciles de encontrar.</li>
+      </ul>
+    </div>
+    <div id="farmacias" class="col-md-6">
+      <div class="farmacia p-4">
+        <h2 class="h3 mb-3">Pensado para farmacias</h2>
+        <ul class="check mb-0">
+          <li>Productos con distintas tarifas de IVA en un mismo comprobante.</li>
+          <li>Inventario por lote y fecha de caducidad.</li>
+          <li>Búsqueda por nombre, código de barras o principio activo.</li>
+          <li>Facturación ágil en mostrador, aun en horas de mucha venta.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="noticias" class="py-5" style="background:var(--menta)">
+  <div class="container" style="max-width:46rem">
+    <div class="d-flex flex-wrap justify-content-between align-items-baseline gap-2 mb-1">
+      <h2 class="h3 mb-0">Noticias del SRI</h2>
       <p id="estado" class="small text-body-secondary mb-0" role="status"></p>
-    </header>
+    </div>
+    <p class="text-body-secondary mb-4">Cambios y fechas que afectan tu facturación electrónica.</p>
+    <div id="avisos" aria-live="polite"></div>
+    <button id="btnRestaurar" type="button" class="btn btn-link btn-sm p-0 mt-2" hidden>Mostrar noticias descartadas</button>
+  </div>
+</section>
 
-    <section id="avisos" aria-label="Lista de noticias"></section>
+<section id="contacto" class="container py-5 text-center">
+  <h2 class="h3">Mira cómo funciona con tu negocio</h2>
+  <p class="texto mx-auto">Te mostramos el sistema en una demostración corta y resolvemos tus dudas sobre el SRI.</p>
+  <div class="d-flex flex-wrap justify-content-center gap-2">
+    <a class="btn btn-verde btn-lg" href="https://wa.me/593900000000" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
+    <a class="btn btn-linea btn-lg" href="mailto:ventas@tudominio.com">Enviar un correo</a>
+  </div>
+</section>
 
-    <p class="mt-3 mb-0">
-      <button id="btnRestaurar" type="button" class="btn btn-link btn-sm p-0" hidden>
-        Mostrar noticias descartadas
-      </button>
-    </p>
-  </main>
+<footer class="py-4 small">
+  <div class="container d-flex flex-wrap justify-content-between gap-2">
+    <span>© 2026 Facturea. Todos los derechos reservados.</span>
+    <span>Información tributaria: <a href="https://www.sri.gob.ec" target="_blank" rel="noopener noreferrer">sri.gob.ec</a></span>
+  </div>
+</footer>
 
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+(() => {
+  "use strict";
+  const ARCHIVO = "noticias.json", CADA_MIN = 5, MAX_VISIBLES = 5, CLAVE = "noticias_descartadas_v1";
+  const TIPOS = { info: ["alert-info","Información"], alerta: ["alert-warning","Alerta"], novedad: ["alert-primary","Novedad"] };
+  const $a = document.getElementById("avisos"), $e = document.getElementById("estado"), $r = document.getElementById("btnRestaurar");
+  let todas = [], error = false, carga = null;
 
-  <script>
-  (() => {
-    "use strict";
+  const fecha = t => { const d = t ? new Date(t) : null; return d && !isNaN(d) ? d : null; };
+  function vigente(n, ahora) {
+    if (!n || n.activa === false || n.versionMenorA) return false;   // versionMenorA = avisos de la app de escritorio
+    const ini = fecha(n.fecha);
+    if (ini && ini > ahora) return false;
+    let fin = fecha(n.expira); const dias = Number(n.diasVisible) || 0;
+    if (ini && dias > 0) { const f = new Date(ini.getFullYear(), ini.getMonth(), ini.getDate() + dias); if (!fin || f < fin) fin = f; }
+    return !fin || fin > ahora;
+  }
+  const leer = () => { try { return new Set(JSON.parse(localStorage.getItem(CLAVE) || "[]")); } catch { return new Set(); } };
+  const guardar = s => { try { localStorage.setItem(CLAVE, JSON.stringify([...s])); } catch {} };
+  const seguro = t => { try { const u = new URL(t, location.href); return /^https?:$/.test(u.protocol) ? u.href : null; } catch { return null; } };
+  const el = (tag, cls, txt) => { const x = document.createElement(tag); if (cls) x.className = cls; if (txt) x.textContent = txt; return x; };
 
-    // ===== Configuración =====
-    const ARCHIVO = "noticias.json";            // debe estar junto a este index.html
-    const ACTUALIZAR_CADA_MIN = 5;              // cada cuántos minutos se vuelve a leer el JSON
-    const OCULTAR_AVISOS_DE_VERSION = true;     // los avisos con "versionMenorA" son para la app de escritorio
-    const CLAVE_DESCARTADAS = "noticias_descartadas_v1";
+  function alerta(n) {
+    const [clase, nombre] = TIPOS[String(n.tipo).toLowerCase()] || ["alert-secondary", "Aviso"];
+    const box = el("article", `alert ${clase} alert-dismissible fade show`);
+    const cab = el("div", "d-flex flex-wrap justify-content-between align-items-baseline column-gap-3");
+    const h = el("h3", "aviso-titulo h6 mb-1 font-sans"); h.style.fontFamily = "inherit";
+    h.append(el("span", "visually-hidden", nombre + ": "), n.titulo || "Aviso"); cab.append(h);
+    const f = fecha(n.fecha);
+    if (f) cab.append(el("time", "aviso-fecha", f.toLocaleDateString("es-EC", { day: "numeric", month: "short", year: "numeric" })));
+    box.append(cab);
+    if (n.mensaje) box.append(el("p", "aviso-texto mb-0", n.mensaje));
+    const url = seguro(n.url);
+    if (url) { const p = el("p", "mb-0 mt-2"), a = el("a", "alert-link", "Ver más"); a.href = url; a.target = "_blank"; a.rel = "noopener noreferrer"; p.append(a); box.append(p); }
+    const x = el("button", "btn-close"); x.type = "button"; x.setAttribute("data-bs-dismiss", "alert"); x.setAttribute("aria-label", "Descartar aviso");
+    x.addEventListener("click", () => { const s = leer(); s.add(n.id); guardar(s); setTimeout(render, 300); });
+    box.append(x); return box;
+  }
 
-    const TIPOS = {
-      info:    { clase: "alert-info",      nombre: "Información" },
-      alerta:  { clase: "alert-warning",   nombre: "Alerta" },
-      novedad: { clase: "alert-primary",   nombre: "Novedad" },
-      otro:    { clase: "alert-secondary", nombre: "Aviso" }
-    };
+  function render() {
+    const ahora = new Date(), desc = leer();
+    const vig = todas.filter(n => vigente(n, ahora)).sort((a, b) => (fecha(b.fecha) || 0) - (fecha(a.fecha) || 0));
+    const vis = vig.filter(n => !desc.has(n.id)).slice(0, MAX_VISIBLES), nDesc = vig.filter(n => desc.has(n.id)).length;
+    $r.hidden = nDesc === 0;
+    $e.textContent = carga ? (error ? "Sin conexión: lista de las " : "Actualizado a las ") + carga.toLocaleTimeString("es-EC", { hour: "2-digit", minute: "2-digit" }) : (error ? "" : "Cargando…");
+    if (error && !carga) { $a.replaceChildren(el("div", "alert alert-danger", "No se pudieron cargar las noticias. Inténtalo de nuevo más tarde.")); return; }
+    $a.replaceChildren(...(vis.length ? vis.map(alerta) : [el("p", "text-body-secondary", nDesc ? "Descartaste las noticias vigentes." : "No hay noticias por ahora.")]));
+  }
 
-    // <test-start>
-    function leerFecha(texto) {
-      if (!texto) return null;
-      const d = new Date(texto);               // "2026-10-19T08:00:00" se interpreta en hora local
-      return isNaN(d.getTime()) ? null : d;
-    }
-
-    // Mismas reglas que la app de escritorio: activa, fecha de publicación, expira y días de vigencia
-    function esVigente(n, ahora) {
-      if (!n || n.activa === false) return false;
-      if (OCULTAR_AVISOS_DE_VERSION && n.versionMenorA) return false;
-
-      const inicio = leerFecha(n.fecha);
-      if (inicio && inicio > ahora) return false;               // programada: aún no llega
-
-      let fin = leerFecha(n.expira);
-      const dias = Number(n.diasVisible) || 0;
-      if (inicio && dias > 0) {
-        // N días de calendario: el día de publicación cuenta como el día 1
-        const finDias = new Date(inicio.getFullYear(), inicio.getMonth(), inicio.getDate() + dias);
-        if (!fin || finDias < fin) fin = finDias;
-      }
-      return !fin || fin > ahora;
-    }
-    // <test-end>
-
-    // ===== Estado =====
-    const $avisos = document.getElementById("avisos");
-    const $estado = document.getElementById("estado");
-    const $restaurar = document.getElementById("btnRestaurar");
-
-    let todas = [];
-    let hayError = false;
-    let ultimaCarga = null;
-    let firmaActual = "";
-
-    // ===== Noticias descartadas (se recuerdan en este navegador) =====
-    function leerDescartadas() {
-      try {
-        const v = JSON.parse(localStorage.getItem(CLAVE_DESCARTADAS) || "[]");
-        return new Set(Array.isArray(v) ? v : []);
-      } catch { return new Set(); }
-    }
-    function guardarDescartadas(set) {
-      try { localStorage.setItem(CLAVE_DESCARTADAS, JSON.stringify([...set])); } catch { /* sin almacenamiento */ }
-    }
-
-    // ===== Construcción de una alerta (todo con textContent: sin HTML inyectado) =====
-    function urlSegura(texto) {
-      if (!texto) return null;
-      try {
-        const u = new URL(texto, location.href);
-        return (u.protocol === "https:" || u.protocol === "http:") ? u.href : null;
-      } catch { return null; }
-    }
-
-    function crearAlerta(n) {
-      const tipo = TIPOS[String(n.tipo || "").toLowerCase()] || TIPOS.otro;
-
-      const alerta = document.createElement("article");
-      alerta.className = `alert ${tipo.clase} alert-dismissible fade show`;
-
-      const cabecera = document.createElement("div");
-      cabecera.className = "d-flex flex-wrap justify-content-between align-items-baseline column-gap-3";
-
-      const titulo = document.createElement("h2");
-      titulo.className = "aviso-titulo h6 mb-1";
-      const oculto = document.createElement("span");
-      oculto.className = "visually-hidden";
-      oculto.textContent = `${tipo.nombre}: `;
-      titulo.append(oculto, n.titulo || "Aviso");
-      cabecera.append(titulo);
-
-      const fecha = leerFecha(n.fecha);
-      if (fecha) {
-        const t = document.createElement("time");
-        t.className = "aviso-fecha";
-        t.dateTime = fecha.toISOString();
-        t.textContent = fecha.toLocaleDateString("es-EC", { day: "numeric", month: "short", year: "numeric" });
-        cabecera.append(t);
-      }
-      alerta.append(cabecera);
-
-      if (n.mensaje) {
-        const p = document.createElement("p");
-        p.className = "aviso-texto mb-0";
-        p.textContent = n.mensaje;
-        alerta.append(p);
-      }
-
-      const enlace = urlSegura(n.url);
-      if (enlace) {
-        const p = document.createElement("p");
-        p.className = "mb-0 mt-2";
-        const a = document.createElement("a");
-        a.className = "alert-link";
-        a.href = enlace;
-        a.target = "_blank";
-        a.rel = "noopener noreferrer";
-        a.textContent = "Ver más";
-        p.append(a);
-        alerta.append(p);
-      }
-
-      const cerrar = document.createElement("button");
-      cerrar.type = "button";
-      cerrar.className = "btn-close";
-      cerrar.setAttribute("data-bs-dismiss", "alert");
-      cerrar.setAttribute("aria-label", "Descartar aviso");
-      cerrar.addEventListener("click", () => {
-        const set = leerDescartadas();
-        set.add(n.id);
-        guardarDescartadas(set);
-        setTimeout(() => render(true), 300);     // deja terminar la animación de cierre
-      });
-      alerta.append(cerrar);
-
-      return alerta;
-    }
-
-    // ===== Pintado =====
-    function render(forzar) {
-      const ahora = new Date();
-      const descartadas = leerDescartadas();
-
-      const vigentes = todas
-        .filter(n => esVigente(n, ahora))
-        .sort((a, b) => (leerFecha(b.fecha)?.getTime() || 0) - (leerFecha(a.fecha)?.getTime() || 0));
-      const visibles = vigentes.filter(n => !descartadas.has(n.id));
-      const nDescartadas = vigentes.length - visibles.length;
-
-      // Línea de estado
-      if (ultimaCarga) {
-        const hora = ultimaCarga.toLocaleTimeString("es-EC", { hour: "2-digit", minute: "2-digit" });
-        $estado.textContent = hayError
-          ? `Sin conexión. Se muestra la lista de las ${hora}.`
-          : `Actualizado a las ${hora}.`;
-      } else {
-        $estado.textContent = hayError ? "" : "Cargando…";
-      }
-      $restaurar.hidden = nDescartadas === 0;
-
-      // Solo se vuelve a pintar si cambió algo (evita perder el foco del teclado)
-      const sinDatos = hayError && !ultimaCarga;
-      const firma = JSON.stringify([visibles.map(n => [n.id, n.titulo, n.mensaje, n.tipo, n.url, n.fecha]), sinDatos, nDescartadas]);
-      if (!forzar && firma === firmaActual) return;
-      firmaActual = firma;
-
-      const nodos = [];
-      if (sinDatos) {
-        const div = document.createElement("div");
-        div.className = "alert alert-danger d-flex flex-wrap align-items-center justify-content-between gap-2";
-        const texto = document.createElement("span");
-        texto.textContent = "No se pudo cargar la lista de noticias. Revisa tu conexión e inténtalo de nuevo.";
-        const boton = document.createElement("button");
-        boton.type = "button";
-        boton.className = "btn btn-sm btn-outline-danger";
-        boton.textContent = "Reintentar";
-        boton.addEventListener("click", cargar);
-        div.append(texto, boton);
-        nodos.push(div);
-      } else if (visibles.length === 0 && ultimaCarga) {
-        const p = document.createElement("p");
-        p.className = "text-body-secondary";
-        p.textContent = nDescartadas > 0
-          ? `Descartaste ${nDescartadas} ${nDescartadas === 1 ? "noticia" : "noticias"}. Puedes volver a mostrarlas abajo.`
-          : "No hay noticias por ahora.";
-        nodos.push(p);
-      } else {
-        visibles.forEach(n => nodos.push(crearAlerta(n)));
-      }
-      $avisos.replaceChildren(...nodos);
-    }
-
-    // ===== Carga del JSON =====
-    async function cargar() {
-      try {
-        const r = await fetch(`${ARCHIVO}?t=${Date.now()}`, { cache: "no-store" });
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        const datos = await r.json();
-        todas = Array.isArray(datos.noticias) ? datos.noticias : [];
-        ultimaCarga = new Date();
-        hayError = false;
-      } catch (e) {
-        hayError = true;
-        console.warn("No se pudo leer", ARCHIVO, e);
-      }
-      render(true);
-    }
-
-    $restaurar.addEventListener("click", () => {
-      const ahora = new Date();
-      const set = leerDescartadas();
-      todas.filter(n => esVigente(n, ahora)).forEach(n => set.delete(n.id));
-      guardarDescartadas(set);
-      render(true);
-    });
-
-    // ===== Tema claro/oscuro según el sistema =====
-    const oscuro = matchMedia("(prefers-color-scheme: dark)");
-    const aplicarTema = () => document.documentElement.setAttribute("data-bs-theme", oscuro.matches ? "dark" : "light");
-    aplicarTema();
-    oscuro.addEventListener("change", aplicarTema);
-
-    // ===== Arranque =====
-    render(true);
-    cargar();
-    setInterval(cargar, ACTUALIZAR_CADA_MIN * 60 * 1000);
-    setInterval(() => render(false), 60 * 1000);          // aplica fechas programadas y vencimientos
-    document.addEventListener("visibilitychange", () => { if (!document.hidden) cargar(); });
-  })();
-  </script>
+  async function cargar() {
+    try {
+      const r = await fetch(`${ARCHIVO}?t=${Date.now()}`, { cache: "no-store" });
+      if (!r.ok) throw new Error(r.status);
+      const d = await r.json(); todas = Array.isArray(d.noticias) ? d.noticias : []; carga = new Date(); error = false;
+    } catch (e) { error = true; }
+    render();
+  }
+  $r.addEventListener("click", () => { const s = leer(), ahora = new Date(); todas.filter(n => vigente(n, ahora)).forEach(n => s.delete(n.id)); guardar(s); render(); });
+  render(); cargar();
+  setInterval(cargar, CADA_MIN * 60000);
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) cargar(); });
+})();
+</script>
 </body>
 </html>
